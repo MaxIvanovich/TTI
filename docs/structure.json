@@ -1,0 +1,43 @@
+{
+    "project": "TTI",
+    "structure": {
+        "src": {
+            "tti": {
+                "__init__.py": {
+                    "description": "",
+                    "entities": {},
+                    "contents": ""
+                }
+            }
+        },
+        "README.md": {
+            "description": "",
+            "entities": {},
+            "contents": ""
+        },
+        "tests": {
+            "__init__.py": {
+                "description": "",
+                "entities": {},
+                "contents": ""
+            }
+        },
+        "pyproject.toml": {
+            "description": "",
+            "entities": {},
+            "contents": "[project]\nname = \"tti\"\nversion = \"0.1.0\"\ndescription = \"TTI (Trading Technical Indicators) - Торговые Технические Индикаторы\"\nlicense=\"MIT\"\nauthors = [\n    {name = \"Maxim Kalinichenko\",email = \"maximivanovich@vk.ru\"}\n]\nreadme = \"README.md\"\nrequires-python = \">=3.13\"\ndependencies = [\n]\n\n[tool.poetry]\npackages = [{include = \"tti\", from = \"src\"}]\n\n[build-system]\nrequires = [\"poetry-core>=2.0.0,<3.0.0\"]\nbuild-backend = \"poetry.core.masonry.api\"\n\n"
+        },
+        "docs": {
+            "CODING_SPEC.md": {
+                "description": "",
+                "entities": {},
+                "contents": "# 1. Контекст проекта\n\nПроект — это Python-библиотека для расчёта торговых технических индикаторов.\nСтек: Python 3.9+, с использованием Pandas и NumPy.\nВсе исходные файлы должны размещаться в директории src/.\n\n# 2. Текущая реализация и проблема\n\nНа данный момент реализации нет — задача разрабатывается с нуля.\nОбратная совместимость не требуется.\n\n# 3. Цель задачи\n\nСоздать модульную библиотеку, предоставляющую интерфейс для расчёта торговых технических индикаторов на основе временных рядов цен.\nТип задачи: добавление новой функциональности (библиотека с нуля).\n\n# 4. Требования к функционалу\n\n    Реализовать классы-индикаторы для расчёта:\n        Простой скользящей средней (SMA)\n        Среднего истинного диапазона (ATR)\n    Каждый индикатор должен быть реализован как отдельный класс с методом .calculate().\n    Входные данные:\n        Либо pd.DataFrame с колонками: open, high, low, close, volume, и datetime-индексом.\n        Либо pd.Series с datetime-индексом (например, только цены закрытия).\n    Выходные данные:\n        pd.Series — если индикатор возвращает один ряд (например, SMA).\n        pd.DataFrame — если индикатор возвращает несколько рядов (например, ATR может возвращать TR и ATR).\n    Параметры расчёта передаются при инициализации класса (например, period=14).\n    Интерфейс должен быть удобен для импорта и использования в других проектах.\n\n# 5. Ограничения и запреты\n\n    Запрещено использовать любые сторонние библиотеки, кроме pandas и NumPy.\n    Код должен быть отформатирован в соответствии с black.\n    Python версии 3.9 или выше.\n\n# 6. Требования к архитектуре и коду\n\n    Архитектура: объектно-ориентированная, каждый индикатор — отдельный класс.\n    Классы должны быть чистыми, без побочных эффектов, легко тестируемыми.\n    Все публичные методы должны содержать типизацию (type hints).\n    Желательно использовать векторизованные операции pandas/NumPy — без явных циклов по строкам.\n    Документация: docstring в стиле Google или NumPy для каждого публичного класса и метода.\n\n# 7. Формат результата\n\n    Создать следующие файлы в `src/`:\n        `src/tti/__init__.py`\n        `src/tti/price_indicators.py` — ценовые индикаторы\n        `src/tti/volume_indicators.py` — объемные индикаторы\n\n    Каждый файл содержит один класс индикатора и соответствующую логику расчёта.\n    Пример структуры класса:\n\n```python\nclass SMAIndicator:\n    def __init__(self, period: int = 14):\n        self.period = period\n\n    def calculate(self, prices: pd.Series) -> pd.Series:\n        # реализация\n```\n\n# 8. Тестирование и критерии приёмки\n\n    Должны быть написаны integration-тесты (например, в папке tests/), проверяющие корректность расчётов.\n    Тесты должны использовать реалистичные OHLCV-данные (можно сгенерировать).\n    Критерий приёмки: результаты расчётов совпадают с аналогами из торговых терминалов (например, TradingView) с допуском на погрешность 1e-6.\n    Тесты должны запускаться через pytest.\n\n# 9. Особые указания для Qwen3 Code\n\n    Можно создавать новые файлы и папки в src/.\n    Нельзя использовать внешние зависимости кроме pandas и NumPy.\n    Нужно добавлять docstring и типизацию.\n    Форматирование: strict black.\n    Все индикаторы должны быть расширяемыми — легко добавить новые в будущем.\n"
+            }
+        },
+        "LICENSE": {
+            "description": "",
+            "entities": {},
+            "contents": "MIT License\n\nCopyright (c) 2025 MaxIvanovich\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+        }
+    }
+}
