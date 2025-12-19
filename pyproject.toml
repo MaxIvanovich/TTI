@@ -1,0 +1,20 @@
+[project]
+name = "tti"
+version = "0.1.0"
+description = "TTI (Trading Technical Indicators) - Торговые Технические Индикаторы"
+license="MIT"
+authors = [
+    {name = "Maxim Kalinichenko",email = "maximivanovich@vk.ru"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+]
+
+[tool.poetry]
+packages = [{include = "tti", from = "src"}]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
